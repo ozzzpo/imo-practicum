@@ -1,0 +1,22 @@
+[project]
+name = "imo-practicum"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "jupyter>=1.1.1",
+    "matplotlib>=3.11.2",
+    "numpy>=2.5.4",
+    "pandas>=3.1.1",
+    "phik>=0.12.5",
+    "scikit-learn>=1.9.1",
+    "seaborn>=0.13.2",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.2.0",
+]
+
+[tool.pytest.ini_options]
+# Корень в sys.path, чтобы тесты импортировали src без установки пакета.
+pythonpath = ["."]
