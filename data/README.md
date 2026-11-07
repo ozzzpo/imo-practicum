@@ -6,7 +6,7 @@
 
 Скачай [ZIP версии 1 с Kaggle](https://www.kaggle.com/api/v1/datasets/download/blastchar/telco-customer-churn?datasetVersionNumber=1) и распакуй `WA_Fn-UseC_-Telco-Customer-Churn.csv` в `data/raw/`. Подготовленные наборы храни в `data/processed/`. Обе папки игнорируются Git.
 
-Исходный CSV весит 977 501 байт. SHA-256 — `88be4b93fbe0cc83421af1c503794c97c342eca914c1576db7c276e61d61358a`.
+Исходный CSV весит 977 501 байт. SHA-256 — `88be4b93fbe0cc83421af1c503794c97c342eca914c1576db7c276e61d61358a`. Функция `load_raw()` из [src/data.py](../src/data.py) сверяет хеш при каждой загрузке.
 
 ## Состав
 
