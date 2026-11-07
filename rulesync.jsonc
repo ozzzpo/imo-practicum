@@ -1,0 +1,21 @@
+{
+  "$schema": "https://github.com/dyoshikawa/rulesync/releases/latest/download/config-schema.json",
+
+  // Правила агентов пишутся один раз в .rulesync/, а rulesync генерирует из них CLAUDE.md,
+  // AGENTS.md и деревья навыков. Сгенерированное коммитится, руками не правится.
+  // Версия закреплена в docs/workflow.md и .github/workflows/agent-rules.yml — меняй вместе.
+  // Порядок работы — навык .rulesync/skills/managing-agent-rules.
+
+  "targets": ["claudecode", "codexcli", "opencode"],
+
+  // Только правила и навыки. MCP, хуки и разрешения — личное дело каждого участника.
+  "features": ["rules", "skills"],
+
+  // .rulesync.local — личные дополнения, игнорируется Git. Позже в списке — важнее.
+  "inputRoots": ["./.rulesync", "./.rulesync.local"],
+
+  "outputRoots": ["."],
+
+  // Навык, у которого нет источника в .rulesync/skills, удаляется из сгенерированных деревьев.
+  "delete": true
+}

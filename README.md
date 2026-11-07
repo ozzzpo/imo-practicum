@@ -15,5 +15,30 @@
 | `tests/` | Проверки преобразований данных и другого переиспользуемого кода |
 | [`data/`](data/README.md) | Инструкция получения данных и локальное рабочее хранилище |
 | `reports/` | Графики, отчёты и материалы промежуточной и итоговой защит |
+| `.rulesync/` | Правила и навыки ИИ-агентов. Из них генерируются `CLAUDE.md` и `AGENTS.md`, [как менять](docs/workflow.md#правила-для-ии-агентов) |
 
 Для погружения в проект начни с [карты контекста](context/README.md).
+
+## Быстрый старт
+
+Окружение собирает [uv](https://docs.astral.sh/uv/getting-started/installation/). Он сам скачает Python 3.12, если его нет. Установка uv на Windows:
+
+```powershell
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+```
+
+На macOS и Linux:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Затем из корня репозитория:
+
+```bash
+uv sync                # создаёт .venv и ставит всё строго по uv.lock
+uv run pytest          # проверка установки
+uv run jupyter lab     # ноутбуки
+```
+
+В VS Code и PyCharm выбери интерпретатор из `.venv`. Скачай CSV по инструкции в [data/README.md](data/README.md). Пока его нет, тест реального файла пропускается. Правила работы с ноутбуками и Git описаны в [docs/workflow.md](docs/workflow.md).

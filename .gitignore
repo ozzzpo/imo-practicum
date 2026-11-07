@@ -10,3 +10,4 @@ __pycache__/
 
 /data/*
 !/data/README.md
+/.rulesync.local/
