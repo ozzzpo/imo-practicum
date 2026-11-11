@@ -4,7 +4,30 @@
 
 ## Получение
 
-Скачай [ZIP версии 1 с Kaggle](https://www.kaggle.com/api/v1/datasets/download/blastchar/telco-customer-churn?datasetVersionNumber=1) и распакуй `WA_Fn-UseC_-Telco-Customer-Churn.csv` в `data/raw/`. Подготовленные наборы храни в `data/processed/`. Обе папки игнорируются Git.
+После `uv sync` общий ноутбук сам получает данные при первом запуске:
+
+```python
+from src.data import load_raw
+
+df = load_raw(download=True)
+```
+
+Если CSV отсутствует, загрузчик скачивает только файл
+`WA_Fn-UseC_-Telco-Customer-Churn.csv` из **версии 1**
+(`blastchar/telco-customer-churn/versions/1`) через `kagglehub`, проверяет
+SHA-256 и сохраняет проверенный файл в `data/raw/`. Незавершённое скачивание
+или файл с неверным хешем не сохраняются как рабочий CSV. При повторном
+запуске используется локальный файл без обращения к Kaggle.
+
+`load_raw()` без параметра `download=True` работает только с локальным файлом.
+Для отдельного скачивания без чтения таблицы доступна функция `download_raw()`
+из `src.data`. Существующий файл автоматически не заменяется: при неверном
+хеше загрузчик останавливается с ошибкой.
+
+Если Kaggle недоступен, можно скачать [ZIP версии 1](https://www.kaggle.com/api/v1/datasets/download/blastchar/telco-customer-churn?datasetVersionNumber=1)
+и распаковать CSV в `data/raw/` вручную. Проверка хеша применяется и к ручной
+загрузке. Подготовленные наборы храни в `data/processed/`. Обе папки
+игнорируются Git.
 
 Исходный CSV весит 977 501 байт. SHA-256 — `88be4b93fbe0cc83421af1c503794c97c342eca914c1576db7c276e61d61358a`. Функция `load_raw()` из [src/data.py](../src/data.py) сверяет хеш при каждой загрузке.
 
